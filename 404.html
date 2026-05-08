@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lost in Space</title>
+    <style>
+        /* --- Base Setup --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0b0c10;
+            color: #c5c6c7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Prevents scrollbars from stars */
+        }
+
+        /* --- Content Styling --- */
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10; /* Keeps text above stars */
+        }
+
+        .error-code {
+            font-size: 10rem;
+            font-weight: 900;
+            margin: 0;
+            color: transparent;
+            -webkit-text-stroke: 2px #66fcf1;
+            text-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            animation: pulse 3s infinite;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            color: #0b0c10;
+            background: #66fcf1;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
+        }
+
+        .btn:hover {
+            background: #fff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            transform: translateY(-3px);
+        }
+
+        /* --- Star Background --- */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: twinkle alternate infinite;
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); text-shadow: 0 0 20px rgba(102, 252, 241, 0.4); }
+            50% { transform: translateY(-20px); text-shadow: 0 0 40px rgba(102, 252, 241, 0.8); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.1; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <div class="container">
+        <h1 class="error-code">404</h1>
+        <p class="message">Looks like you're lost in space.</p>
+        <a href="/" class="btn">Return to Earth</a>
+    </div>
+
+    <script>
+        const starsContainer = document.querySelector('.stars');
+        const numberOfStars = 150;
+
+        for (let i = 0; i < numberOfStars; i++) {
+            let star = document.createElement('div');
+            star.className = 'star';
+            
+            // Randomize star size, position, and animation duration
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDuration = (Math.random() * 3 + 1) + 's';
+            
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
